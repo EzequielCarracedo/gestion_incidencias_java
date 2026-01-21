@@ -6,10 +6,8 @@ public class Incidencia {
     private Usuario user;
     private EstatIncidencia estado;
 
-
-
-    //BUILDER
-    public Incidencia(String id, String descripcion, Usuario user){
+    // BUILDER
+    public Incidencia(String id, String descripcion, Usuario user) {
 
         this.id = id;
         this.descripcion = descripcion;
@@ -17,33 +15,47 @@ public class Incidencia {
         this.estado = EstatIncidencia.ABIERTA;
     }
 
+    // GETTERS
 
-    //GETTERS
-
-    public String getId(){
+    public String getId() {
         return id;
     }
 
-     public String getDescripcion(){
+    public String getDescripcion() {
         return descripcion;
     }
-     public Usuario getUser(){
+
+    public Usuario getUser() {
         return user;
     }
-     public EstatIncidencia getEstado(){
+
+    public EstatIncidencia getEstado() {
         return estado;
     }
 
-    
+    // SETTER
 
-    //CAMBIAR ESTADO 
-    public void cambiarEstado(EstatIncidencia nuevoEstado){
-        this.estado = nuevoEstado;
-
+    public void setDescripcion(String descripcion) {
+        if (descripcion != null && !descripcion.isEmpty()) { // Validación
+            this.descripcion += descripcion;
+        }
     }
 
+    // CAMBIAR ESTADO
+    public boolean cambiarEstado(EstatIncidencia nuevoEstado) {
 
+        if (estado.equals(EstatIncidencia.ABIERTA) && nuevoEstado.equals(EstatIncidencia.EN_PROCESO)) {
+            this.estado = EstatIncidencia.EN_PROCESO;
+            System.out.println("EL ESTADO DE HA CAMBIADO A 'EN PROCESO'.");
+            return true;
+        } else if (estado.equals(EstatIncidencia.EN_PROCESO) && nuevoEstado.equals(EstatIncidencia.CERRADA)) {
+            this.estado = EstatIncidencia.CERRADA;
+            System.out.println("EL ESTADO DE HA CAMBIADO A 'CERRADA'.");
+            return true;
+        } else {
+            return false;
+        }
 
-    
+    }
 
 }

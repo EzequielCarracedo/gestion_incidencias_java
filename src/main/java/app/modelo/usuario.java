@@ -14,12 +14,12 @@ public record Usuario(String id,String nom, String email) {
 
     }
 
-    public static void imprimirUsuario(){
+    public void imprimirUsuario(){
         //Imprimir un usuario en una posicion
 
     }
 
-    public static void listarUsuarios(){
+    public void listarUsuarios(){
 
         //utilizar imprimir usuario para e iterar una pos para pasarle
 
