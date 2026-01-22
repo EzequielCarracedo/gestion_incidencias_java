@@ -52,22 +52,24 @@ public class gestorIncidencias {
         return result;
     }
 
-    public void modificarIncidencia(String id, boolean cambiarDescripcion, int cambiarEstado, Incidencia incidencia) {
+    public void modificarIncidencia(String id, boolean cambiarDescripcion, int eleccioEstado, boolean cambiarEstado) {
         int index = buscarPorId(id);
+        if (cambiarEstado) {
+            switch (eleccioEstado) {
+                case 1:
+                    incidencias.get(index).cambiarEstado(EstatIncidencia.EN_PROCESO);
+                    break;
+                case 2:
+                    incidencias.get(index).cambiarEstado(EstatIncidencia.CERRADA);
+                    break;
+                default:
+                    break;
+            }
 
-        switch (cambiarEstado) {
-            case 1:
-                incidencias.get(index).cambiarEstado(EstatIncidencia.EN_PROCESO);
-                break;
-            case 2:
-                incidencias.get(index).cambiarEstado(EstatIncidencia.CERRADA);
-                break;
-                default : break;
         }
-
         if (cambiarDescripcion) {
             incidencias.get(index)
-                    .setDescripcion(utilitats.demanarString("Ingresa lo que quieres agregar a la descripcion."));
+                    .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción."));
         }
 
     }
