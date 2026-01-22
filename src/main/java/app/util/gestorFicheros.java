@@ -14,7 +14,9 @@ import main.java.app.modelo.Usuario;
 public class gestorFicheros {
     utils utilitats = new utils();
 
-    public void grabarClientes(ArrayList<Incidencia> llistatIncidencies, File ficheroClientes) throws IOException {
+
+    //SEPARAR CLIENTE DE INCIDENCIAS PARA GUARDAR
+    public void grabarIncidencias(ArrayList<Incidencia> llistatIncidencies, File ficheroClientes) throws IOException {
         BufferedReader buffer = utilitats.obrirLectors(ficheroClientes);
         BufferedWriter escriptor = utilitats.obrirEscriptors(ficheroClientes);
 
