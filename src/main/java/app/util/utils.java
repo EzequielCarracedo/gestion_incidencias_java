@@ -1,4 +1,4 @@
-package main.java.app.util;
+package app.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class utils {
+public class Utils {
     Scanner scan = new Scanner(System.in);
 
   
@@ -33,6 +33,8 @@ public class utils {
 
         return new BufferedWriter(escriptor);
     }
+
+    
 
 
 

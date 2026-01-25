@@ -1,16 +1,16 @@
-package main.java.app.gestor;
+package app.gestor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.app.modelo.EstatIncidencia;
-import main.java.app.modelo.Incidencia;
-import main.java.app.modelo.Usuario;
-import main.java.app.util.utils;
+import app.modelo.EstatIncidencia;
+import app.modelo.Incidencia;
+import app.modelo.Usuario;
+import app.util.Utils;
 
-public class gestorIncidencias {
+public class GestorIncidencias {
 
-    utils utilitats = new utils();
+    Utils utilitats = new Utils();
 
     // Lista donde guardamos las incidencias.
     private List<Incidencia> incidencias;
@@ -20,6 +20,8 @@ public class gestorIncidencias {
 
     }
 
+
+    //CREAR REGLA DE TAMAÑO 
     public void crearIncidencia() {
         Usuario usuarioTemporal = new Usuario(null, utilitats.demanarString("Ingresa tu nombre: "),
                 utilitats.demanarString("Ingresa tu email: "));

@@ -1,4 +1,4 @@
-package main.java.app.modelo;
+package app.modelo;
 
 public class Incidencia {
     private String id;
@@ -55,7 +55,14 @@ public class Incidencia {
         } else {
             return false;
         }
+    }
 
+    public void trocejarString(Incidencia incidencia, String lineaIncidencia, String lineaCliente) {
+
+        incidencia.id = lineaIncidencia.substring(0, 6);
+        incidencia.descripcion = lineaIncidencia.substring(6, 107);
+        incidencia.user = new Usuario(lineaIncidencia.substring(0, 6), lineaIncidencia.substring(6, 37),
+                lineaCliente.substring(37, 58));
     }
 
 }

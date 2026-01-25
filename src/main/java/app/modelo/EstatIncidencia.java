@@ -1,4 +1,4 @@
-    package main.java.app.modelo;
+package app.modelo;
     
     public enum EstatIncidencia {
     ABIERTA,
