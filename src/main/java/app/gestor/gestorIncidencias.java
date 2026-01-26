@@ -15,37 +15,35 @@ public class GestorIncidencias {
     // Lista donde guardamos las incidencias.
     private List<Incidencia> incidencias;
 
-    public void gestor() {
-        this.incidencias = new ArrayList<>();
 
-    }
 
 
     //CREAR REGLA DE TAMAÑO 
     public void crearIncidencia() {
         Usuario usuarioTemporal = new Usuario(null, utilitats.demanarString("Ingresa tu nombre: "),
                 utilitats.demanarString("Ingresa tu email: "));
-        Incidencia novaIncidencia = new Incidencia(null, utilitats.demanarString("Describe la incidencia"),
+        Incidencia novaIncidencia = new Incidencia(utilitats.idIncrement(incidencias), utilitats.demanarString("Describe la incidencia"),
                 usuarioTemporal);
 
         incidencias.add(novaIncidencia);
     }
 
+
     public void listarIncidencias() {
 
         if (incidencias.size() != 0) {
             for (int it = 0; it < incidencias.size(); it++) {
-                System.out.println(incidencias.get(it).toString());
+                System.out.println("Id: "+incidencias.get(it).getId());
             }
         } else
             System.out.println("No hay incidencias.");
     }
 
-    public int buscarPorId(String id) {
+    public int buscarPorId(int id) {
         int result = 0;
         for (int it = 0; it < incidencias.size(); it++) {
-            String idElemento = incidencias.get(it).getId();
-            if (idElemento.equals(id)) {
+            int idElemento = incidencias.get(it).getId();
+            if (idElemento == id) {
                 System.out.println(incidencias.get(it).toString());
                 return result;
             }
@@ -54,7 +52,7 @@ public class GestorIncidencias {
         return result;
     }
 
-    public void modificarIncidencia(String id, boolean cambiarDescripcion, int eleccioEstado, boolean cambiarEstado) {
+    public void modificarIncidencia(int id, boolean cambiarDescripcion, int eleccioEstado, boolean cambiarEstado) {
         int index = buscarPorId(id);
         if (cambiarEstado) {
             switch (eleccioEstado) {

@@ -1,13 +1,13 @@
 package app.modelo;
 
 public class Incidencia {
-    private String id;
+    private int id;
     private String descripcion;
     private Usuario user;
     private EstatIncidencia estado;
 
     // BUILDER
-    public Incidencia(String id, String descripcion, Usuario user) {
+    public Incidencia(int id, String descripcion, Usuario user) {
 
         this.id = id;
         this.descripcion = descripcion;
@@ -17,7 +17,7 @@ public class Incidencia {
 
     // GETTERS
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -59,7 +59,7 @@ public class Incidencia {
 
     public void trocejarString(Incidencia incidencia, String lineaIncidencia, String lineaCliente) {
 
-        incidencia.id = lineaIncidencia.substring(0, 6);
+        incidencia.id = Integer.parseInt(lineaIncidencia.substring(0, 6));
         incidencia.descripcion = lineaIncidencia.substring(6, 107);
         incidencia.user = new Usuario(lineaIncidencia.substring(0, 6), lineaIncidencia.substring(6, 37),
                 lineaCliente.substring(37, 58));

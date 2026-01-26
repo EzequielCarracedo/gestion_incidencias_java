@@ -6,9 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import main.java.app.modelo.Incidencia;
-import main.java.app.modelo.Incidencia;
-import main.java.app.modelo.Usuario;
+import app.modelo.Incidencia;
+import app.modelo.Usuario;
 
 public class GestorFicheros {
     Utils utilitats = new Utils();
@@ -49,9 +48,6 @@ public class GestorFicheros {
 
                     llistatIncidencies.add(incidenciaTemporal);
                 }while(true);
-
-
-
 
     }
 
