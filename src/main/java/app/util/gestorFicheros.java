@@ -34,20 +34,25 @@ public class GestorFicheros {
 
     public void cargarFichero(ArrayList<Incidencia> llistatIncidencies, File ficheroIncidencias,
             File ficheroClientes) throws IOException {
-                Incidencia incidenciaTemporal = new Incidencia(null, null, new Usuario(null, null, null));
+        Incidencia incidenciaTemporal = new Incidencia(0, null, new Usuario(0, null, null));
 
-                BufferedReader lectorClientes = utilitats.obrirLectors(ficheroClientes);
-                BufferedReader lectorIncidencias = utilitats.obrirLectors(ficheroIncidencias);
+        BufferedReader lectorClientes = utilitats.obrirLectors(ficheroClientes);
+        BufferedReader lectorIncidencias = utilitats.obrirLectors(ficheroIncidencias);
 
-                do{
-                    String liniaBufferCliente = lectorClientes.readLine();
-                    String liniaBufferIncidencia = lectorIncidencias.readLine();
-                    if (liniaBufferCliente == null && liniaBufferIncidencia == null) break;                       
-                    
-                    else incidenciaTemporal.trocejarString(incidenciaTemporal, liniaBufferIncidencia, liniaBufferCliente);
+        do {
+            String liniaBufferCliente = lectorClientes.readLine();
+            String liniaBufferIncidencia = lectorIncidencias.readLine();
+            if (liniaBufferCliente == null && liniaBufferIncidencia == null)
+                break;
 
-                    llistatIncidencies.add(incidenciaTemporal);
-                }while(true);
+            else
+                incidenciaTemporal.trocejarString(incidenciaTemporal, liniaBufferIncidencia, liniaBufferCliente);
+
+            llistatIncidencies.add(incidenciaTemporal);
+        } while (true);
+
+        lectorClientes.close();
+        lectorIncidencias.close();
 
     }
 

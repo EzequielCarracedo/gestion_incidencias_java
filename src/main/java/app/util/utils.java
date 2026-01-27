@@ -23,24 +23,26 @@ public class Utils {
         return dada;
     }
 
-    public int demanarEnter(String missatge,int min, int max) {
-    System.out.println(missatge);
-    boolean esCorrecte= false;
-    int resultat = 0;
-    //Fem un bucle per només llegir si el número és un enter i si esta dins del rang indicat.
-    while (!esCorrecte) {
-        if (scan.hasNextInt()) {
-            resultat = scan.nextInt();
-            if (resultat >= min && resultat<= max) {
-                esCorrecte = true;
-            } else System.out.println("La opcio introduida no es correcte.");
-        } else {
-            scan.next();
-            System.out.println("Això no es un enter");
+    public int demanarEnter(String missatge, int min, int max) {
+        System.out.println(missatge);
+        boolean esCorrecte = false;
+        int resultat = 0;
+        // Fem un bucle per només llegir si el número és un enter i si esta dins del
+        // rang indicat.
+        while (!esCorrecte) {
+            if (scan.hasNextInt()) {
+                resultat = scan.nextInt();
+                if (resultat >= min && resultat <= max) {
+                    esCorrecte = true;
+                } else
+                    System.out.println("La opcio introduida no es correcte.");
+            } else {
+                scan.next();
+                System.out.println("Això no es un enter");
+            }
         }
+        return resultat;
     }
-    return resultat;
-}
 
     public BufferedReader obrirLectors(File ficheroClientes) throws FileNotFoundException {
         FileReader lector = new FileReader(ficheroClientes);
@@ -54,16 +56,31 @@ public class Utils {
         return new BufferedWriter(escriptor);
     }
 
-
-    public int idIncrement(List<Incidencia> llistatIncidencies){
-        int max = 0;
-        for(int it = 0; it< llistatIncidencies.size(); it++){
-            if(Integer.parseInt(llistatIncidencies.get(it).getId())>max){
-                max = Integer.parseInt(llistatIncidencies.get(it).getId());
+    public int idIncrementIncidencia(List<Incidencia> llistatIncidencies) {
+        int max = 999;
+        if (llistatIncidencies != null) {
+            for (int it = 0; it < llistatIncidencies.size(); it++) {
+                if (llistatIncidencies.get(it).getId() > max) {
+                    max = llistatIncidencies.get(it).getId();
+                }
             }
         }
 
-        return max;
+        return max++;
+    }
+
+    public int idIncrementUsuari(List<Incidencia> llistatIncidencies) {
+        int max = 999;
+        
+        if (llistatIncidencies !=  null) {
+            for (int it = 0; it < llistatIncidencies.size(); it++) {
+                if (llistatIncidencies.get(it).getUser().id() > max) {
+                    max = llistatIncidencies.get(it).getId();
+                }
+            }
+        }
+
+        return max++;
     }
 
 }

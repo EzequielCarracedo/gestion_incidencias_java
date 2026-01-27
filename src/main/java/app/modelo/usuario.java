@@ -1,6 +1,6 @@
 package app.modelo;
 
-public record Usuario(String id, String nom, String email) {
+public record Usuario(int id, String nom, String email) {
 
 
     public Usuario {
