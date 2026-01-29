@@ -12,11 +12,14 @@ public class GestorIncidencias {
 
     Utils utilitats = new Utils();
 
+
     // Lista donde guardamos las incidencias.
-    private List<Incidencia> incidencias = new ArrayList<>();
+    public static List<Incidencia> obrirLlistat() {
+        return new ArrayList<Incidencia>();
+    }
 
     // CREAR REGLA DE TAMAÑO
-    public void crearIncidencia() {
+    public void crearIncidencia(List<Incidencia> incidencias) {
         Usuario usuarioTemporal = new Usuario(utilitats.idIncrementUsuari(incidencias),
                 utilitats.demanarString("Ingresa tu nombre: "),
                 utilitats.demanarString("Ingresa tu email: "));
@@ -28,35 +31,52 @@ public class GestorIncidencias {
 
     }
 
-    public void listarIncidencias() {
+    public void listarIncidencias(List<Incidencia> incidencias) {
 
         if (incidencias.size() != 0) {
             for (int it = 0; it < incidencias.size(); it++) {
-                System.out.println("Id Incidencia: " + incidencias.get(it).getId() + ", Usuario: "
-                        + incidencias.get(it).getUser().nom() + ", Id usuario: " + incidencias.get(it).getUser().id()
-                        + ", Descripción: " + incidencias.get(it).getDescripcion() + ", Estado: "
-                        + incidencias.get(it).getEstado());
+                System.out.println("ID INCIDENCIA: " + incidencias.get(it).getId() + ", DESCRIPCION: " + incidencias.get(it).getDescripcion()+", ESTADO: "+ incidencias.get(it).getEstado() + ", USUARIO: "
+                        + incidencias.get(it).getUser().nom() + ", ID USUARIO: " + incidencias.get(it).getUser().id());
+                        
             }
         } else
             System.out.println("NO HAY INCIDENCIAS.");
     }
 
-    public int buscarPorId(int id) {
+    public int buscarPorId(int id, List<Incidencia> incidencias) {
         int result = 0;
         for (int it = 0; it < incidencias.size(); it++) {
             int idElemento = incidencias.get(it).getId();
             if (idElemento == id) {
-                System.out.println(incidencias.get(it).toString());
+                System.out.println(incidencias.get(it).imprimirIncidencia());
+                result = it;
                 return result;
             }
         }
         System.out.println("No se ha encontrado ninguna incidencia con el id: " + id);
+        result = Integer.MIN_VALUE;
         return result;
     }
 
-    public void modificarIncidencia(int id, boolean cambiarDescripcion, int eleccioEstado, boolean cambiarEstado) {
-        int index = buscarPorId(id);
+    public void modificarIncidencia(int index, List<Incidencia> incidencias) {
+
+        System.out.println("¿QUIERES CAMBIAR LA DESCRIPCION? SI/NO");
+        boolean cambiarDescripcion = utilitats.demanarString("").toUpperCase().equals("SI") ? true : false;
+
+        if (cambiarDescripcion) {
+            incidencias.get(index)
+                    .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción."));
+
+        }
+
+        System.out.println("¿QUIERES CAMBIAR EL ESTADO? SI/NO");
+        boolean cambiarEstado = utilitats.demanarString("").toUpperCase().equals("SI") ? true : false;
         if (cambiarEstado) {
+            System.out.println("""
+                    1-EN PROCESO
+                    2-CERRADA
+                    """);
+            int eleccioEstado = utilitats.demanarEnter("", 1, 2);
             switch (eleccioEstado) {
                 case 1:
                     incidencias.get(index).cambiarEstado(EstatIncidencia.EN_PROCESO);
@@ -68,10 +88,6 @@ public class GestorIncidencias {
                     break;
             }
 
-        }
-        if (cambiarDescripcion) {
-            incidencias.get(index)
-                    .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción."));
         }
 
     }

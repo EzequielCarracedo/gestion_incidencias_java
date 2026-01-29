@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import app.modelo.Incidencia;
 import app.modelo.Usuario;
@@ -12,10 +13,10 @@ import app.modelo.Usuario;
 public class GestorFicheros {
     Utils utilitats = new Utils();
 
-    public void grabarIncidencias(ArrayList<Incidencia> llistatIncidencies, File ficheroIncidencias,
+    public static void grabarIncidencias(List<Incidencia> llistatIncidencies, File ficheroIncidencias,
             File ficheroClientes) throws IOException {
-        BufferedWriter escriptorClientes = utilitats.obrirEscriptors(ficheroClientes);
-        BufferedWriter escriptor = utilitats.obrirEscriptors(ficheroIncidencias);
+        BufferedWriter escriptorClientes = Utils.obrirEscriptors(ficheroClientes);
+        BufferedWriter escriptor = Utils.obrirEscriptors(ficheroIncidencias);
 
         for (int it = 0; it < llistatIncidencies.size(); it++) {
             escriptor.write(llistatIncidencies.get(it).getId() + ";");
@@ -32,12 +33,12 @@ public class GestorFicheros {
         }
     }
 
-    public void cargarFichero(ArrayList<Incidencia> llistatIncidencies, File ficheroIncidencias,
+    public static void cargarFichero(ArrayList<Incidencia> llistatIncidencies , File ficheroIncidencias,
             File ficheroClientes) throws IOException {
-        Incidencia incidenciaTemporal = new Incidencia(0, null, new Usuario(0, null, null));
-
-        BufferedReader lectorClientes = utilitats.obrirLectors(ficheroClientes);
-        BufferedReader lectorIncidencias = utilitats.obrirLectors(ficheroIncidencias);
+        Incidencia incidenciaTemporal = new Incidencia(0, "", new Usuario(0, "", ""));
+        
+        BufferedReader lectorClientes = Utils.obrirLectors(ficheroClientes);
+        BufferedReader lectorIncidencias = Utils.obrirLectors(ficheroIncidencias);
 
         do {
             String liniaBufferCliente = lectorClientes.readLine();

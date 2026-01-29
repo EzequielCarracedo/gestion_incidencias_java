@@ -44,13 +44,13 @@ public class Utils {
         return resultat;
     }
 
-    public BufferedReader obrirLectors(File ficheroClientes) throws FileNotFoundException {
+    public static BufferedReader obrirLectors(File ficheroClientes) throws FileNotFoundException {
         FileReader lector = new FileReader(ficheroClientes);
 
         return new BufferedReader(lector);
     }
 
-    public BufferedWriter obrirEscriptors(File ficheroClientes) throws IOException {
+    public static BufferedWriter obrirEscriptors(File ficheroClientes) throws IOException {
         FileWriter escriptor = new FileWriter(ficheroClientes);
 
         return new BufferedWriter(escriptor);
@@ -66,7 +66,7 @@ public class Utils {
             }
         }
 
-        return max++;
+        return (max+1);
     }
 
     public int idIncrementUsuari(List<Incidencia> llistatIncidencies) {
@@ -80,7 +80,9 @@ public class Utils {
             }
         }
 
-        return max++;
+        return (max+1);
     }
+
+    
 
 }

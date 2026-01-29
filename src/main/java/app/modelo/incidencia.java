@@ -36,8 +36,8 @@ public class Incidencia {
     // SETTER
 
     public void setDescripcion(String descripcion) {
-        if (descripcion != null && !descripcion.isEmpty()) { // Validación
-            this.descripcion += descripcion;
+        if (descripcion != null || !descripcion.isEmpty()) { // Validación
+            this.descripcion = descripcion;
         }
     }
 
@@ -53,9 +53,17 @@ public class Incidencia {
             System.out.println("EL ESTADO DE HA CAMBIADO A 'CERRADA'.");
             return true;
         } else {
+            System.out.println("NO SE PUEDE CAMBIAR A "+nuevoEstado+" DIRECTAMENTE.");
             return false;
         }
     }
+
+    public String imprimirIncidencia(){
+        return "ID INCIDENCIA: "+ this.getId()+ "\nDESCRIPCION: "+this.descripcion +"\nID USUARIO: " +this.user.id() +"\nNOMBRE: " +this.user.nom() ;
+    }
+
+
+
 
     public void trocejarString(Incidencia incidencia, String lineaIncidencia, String lineaCliente) {
 
