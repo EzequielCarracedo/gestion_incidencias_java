@@ -33,7 +33,7 @@ public class GestorFicheros {
         }
     }
 
-    public static void cargarFichero(ArrayList<Incidencia> llistatIncidencies , File ficheroIncidencias,
+    public static void cargarFichero(List<Incidencia> llistatIncidencies , File ficheroIncidencias,
             File ficheroClientes) throws IOException {
         Incidencia incidenciaTemporal = new Incidencia(0, "", new Usuario(0, "", ""));
         
@@ -47,7 +47,7 @@ public class GestorFicheros {
                 break;
 
             else
-                incidenciaTemporal.trocejarString(incidenciaTemporal, liniaBufferIncidencia, liniaBufferCliente);
+                //incidenciaTemporal.trocejarString(incidenciaTemporal, liniaBufferIncidencia, liniaBufferCliente);
 
             llistatIncidencies.add(incidenciaTemporal);
         } while (true);
@@ -55,6 +55,16 @@ public class GestorFicheros {
         lectorClientes.close();
         lectorIncidencias.close();
 
+    }
+
+
+    //CREAR OBJETOS AQUI DENTRO TROCEAR POR SEPARADO. REVISAR INTREGRIDAD ESPACIOS TAMBIEN EN TXT 
+     public void trocejarString(Incidencia incidencia, String lineaIncidencia, String lineaCliente) {
+        
+        //incidencia.id = Integer.parseInt(lineaIncidencia.substring(0, 6));
+        //incidencia.descripcion = lineaIncidencia.substring(6, 107);
+        //incidencia.user = new Usuario(Integer.parseInt(lineaIncidencia.substring(0, 6)), lineaIncidencia.substring(6, 37),
+                //lineaCliente.substring(37, 58));
     }
 
 }

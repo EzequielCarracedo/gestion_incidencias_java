@@ -1,13 +1,11 @@
 package app;
 
-import java.io.EOFException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import app.gestor.GestorIncidencias;
 import app.modelo.Incidencia;
-import app.modelo.Usuario;
 import app.util.GestorFicheros;
 import app.util.Utils;
 
@@ -38,7 +36,7 @@ class Main {
         } catch (IOException e) {
             System.out.println("ERROR FATAL.");
         }
-
+        GestorFicheros.cargarFichero(incidencies, ficheroIncidencias, usuarios);
         do {
             mostrarMenu();
             eleccio = utilitats.demanarEnter("", 0, 4);
