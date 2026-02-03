@@ -23,12 +23,12 @@ class Main {
         Main app = new Main();
         Utils utilitats = new Utils();
         int eleccio = 0;
-        List<Incidencia> incidencies = GestorIncidencias.obrirLlistat();
         File ficheroIncidencias = new File("data\\incidencias.txt");
         File usuarios = new File("data\\usuarios.txt");
         try {
             ficheroIncidencias.createNewFile();
             usuarios.createNewFile();
+            
 
             System.out.println("CARGANDO DATOS FICHERO.");
             System.out.println();
@@ -36,18 +36,18 @@ class Main {
         } catch (IOException e) {
             System.out.println("ERROR FATAL.");
         }
-        GestorFicheros.cargarFichero(incidencies, ficheroIncidencias, usuarios);
+        GestorFicheros.cargarFichero(app.gestor, ficheroIncidencias, usuarios);
         do {
             mostrarMenu();
             eleccio = utilitats.demanarEnter("", 0, 4);
 
             if (eleccio != 0) {
-                app.gestionarEleccion(eleccio, incidencies);
+                app.gestionarEleccion(eleccio);
             }
 
         } while (eleccio != 0);
 
-        GestorFicheros.grabarIncidencias(incidencies, ficheroIncidencias, usuarios);
+        GestorFicheros.grabarIncidencias(app.gestor,ficheroIncidencias, usuarios);
     }
 
     public static void mostrarMenu() {
@@ -62,31 +62,31 @@ class Main {
                     """);
     }
 
-    public void gestionarEleccion(int eleccion, List<Incidencia> incidencias) {
+    public void gestionarEleccion(int eleccion) {
 
         switch (eleccion) {
             case 1:
-                gestor.crearIncidencia(incidencias);
+                gestor.crearIncidencia();
 
                 break;
 
             case 2:
-                gestor.listarIncidencias(incidencias);
+                gestor.listarIncidencias();
                 break;
 
             case 3: {
                 int id = utilitats.demanarEnter("Ingresa el id de la incidencia: ", Integer.MIN_VALUE,
                         Integer.MAX_VALUE);
-                gestor.buscarPorId(id, incidencias);
+                gestor.buscarPorId(id);
             }
                 break;
 
             case 4: {
                 int id = utilitats.demanarEnter("INGRESA EL ID DE LA INCIDENCIA QUE QUIERES MODIFICAR: ",
                         Integer.MIN_VALUE, Integer.MAX_VALUE);
-                int index = gestor.buscarPorId(id, incidencias);
+                int index = gestor.buscarPorId(id);
                 if (index != Integer.MIN_VALUE) {
-                    gestor.modificarIncidencia(index, incidencias);
+                    gestor.modificarIncidencia(index);
                 }
 
             }

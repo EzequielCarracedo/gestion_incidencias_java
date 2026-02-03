@@ -5,12 +5,7 @@ public record Usuario(int id, String nom, String email) {
 
     public Usuario {
      
-        if (nom.isEmpty() || nom.isBlank()) {
-            throw new IllegalArgumentException("El nombre no puede estar vacio.");
-        }
-        if (email.isEmpty() || email.isBlank()) {
-            throw new IllegalArgumentException("El email no puede estar vacio.");
-        }
+    
       
 
     }

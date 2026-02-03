@@ -41,10 +41,12 @@ public class Incidencia {
         }
     }
 
+    public void setId(int id){
+        this.id = id;
+    }
 
-    //HACER MAS SETTERS
-    public void setId(){
-
+    public void setUser(Usuario user){
+        this.user = user;
     }
 
     // CAMBIAR ESTADO
