@@ -12,19 +12,24 @@ public class GestorIncidencias {
 
     Utils utilitats = new Utils();
 
-    private List<Incidencia> llistatIncidencies = new ArrayList<Incidencia>();;
+    private List<Incidencia> llistatIncidencies;
 
 
+
+    public GestorIncidencias(){
+        this.llistatIncidencies =  new ArrayList<Incidencia>();
+    }
 
     public List<Incidencia> getLlistat(){
         return llistatIncidencies;
     }
+    
 
 
 
   
 
-    // CREAR REGLA DE TAMAÑO
+
     public void crearIncidencia() {
         Usuario usuarioTemporal = new Usuario(utilitats.idIncrementUsuari(llistatIncidencies),
                 utilitats.demanarString("Ingresa tu nombre: "),

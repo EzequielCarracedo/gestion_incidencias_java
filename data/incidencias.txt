@@ -1,1 +1,3 @@
-1000 ;sdf                           ;ABIERTA;1000 ;aweaf                         ;
+1000 ;pantalla                                                                                            ;ABIERTA        ;1000 ;Ezequiel Carracedo            ;
+1001 ;MOVIL                                                                                               ;ABIERTA        ;1001 ;GEMMA                         ;
+1002 ;PC                                                                                                  ;ABIERTA        ;1002 ;SERGI                         ;

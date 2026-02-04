@@ -7,6 +7,11 @@ public class Incidencia {
     private EstatIncidencia estado;
 
     // BUILDER
+
+    public Incidencia (){
+        
+    }
+
     public Incidencia(int id, String descripcion, Usuario user) {
 
         this.id = id;
