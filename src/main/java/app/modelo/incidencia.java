@@ -18,6 +18,10 @@ public class Incidencia {
         this.descripcion = descripcion;
         this.user = user;
         this.estado = EstatIncidencia.ABIERTA;
+
+        if (this.descripcion == null || this.descripcion.isBlank()) {
+            throw new IllegalArgumentException("La descripcion no puede estar vacia.");
+        }
     }
 
     // GETTERS

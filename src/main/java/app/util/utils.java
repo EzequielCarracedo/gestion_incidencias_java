@@ -16,6 +16,7 @@ import app.modelo.Incidencia;
 public class Utils {
     Scanner scan = new Scanner(System.in);
 
+    //AÑADIR REGLA DE CANT CARACTERES
     public String demanarString(String missatge) {
         System.out.println(missatge);
         String dada = scan.nextLine();
@@ -27,8 +28,7 @@ public class Utils {
         System.out.println(missatge);
         boolean esCorrecte = false;
         int resultat = 0;
-        // Fem un bucle per només llegir si el número és un enter i si esta dins del
-        // rang indicat.
+
         while (!esCorrecte) {
             if (scan.hasNextInt()) {
                 resultat = scan.nextInt();

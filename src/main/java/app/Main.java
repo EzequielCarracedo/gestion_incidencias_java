@@ -1,11 +1,8 @@
 package app;
 
-
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import app.gestor.GestorIncidencias;
-import app.modelo.Incidencia;
 import app.util.GestorFicheros;
 import app.util.Utils;
 
@@ -28,15 +25,14 @@ class Main {
         try {
             ficheroIncidencias.createNewFile();
             usuarios.createNewFile();
-            
 
-            System.out.println("CARGANDO DATOS FICHERO.");
-            System.out.println();
+            System.out.println("\n*CARGANDO DATOS FICHERO*");
 
         } catch (IOException e) {
             System.out.println("ERROR FATAL.");
         }
         GestorFicheros.cargarFichero(app.gestor, ficheroIncidencias, usuarios);
+        System.out.println("\n*FICHERO CARGADO CORRECTAMENTE* \n");
         do {
             mostrarMenu();
             eleccio = utilitats.demanarEnter("", 0, 4);
@@ -47,7 +43,7 @@ class Main {
 
         } while (eleccio != 0);
 
-        GestorFicheros.grabarIncidencias(app.gestor,ficheroIncidencias, usuarios);
+        GestorFicheros.grabarIncidencias(app.gestor, ficheroIncidencias, usuarios);
     }
 
     public static void mostrarMenu() {
@@ -87,6 +83,7 @@ class Main {
                 int index = gestor.buscarPorId(id);
                 if (index != Integer.MIN_VALUE) {
                     gestor.modificarIncidencia(index);
+                    System.out.println("INCIDENCIA MODIFICADA CORRECTAMENTE.");
                 }
 
             }

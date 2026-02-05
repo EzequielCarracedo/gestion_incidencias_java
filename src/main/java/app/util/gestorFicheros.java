@@ -48,15 +48,14 @@ public class GestorFicheros {
         BufferedReader lectorIncidencias = Utils.obrirLectors(ficheroIncidencias);
 
         do {
-            Incidencia incidenciaTemporal = new Incidencia(0, "temporal", new Usuario(0, "temporal", "temporal"));
+
             String liniaBufferCliente = lectorClientes.readLine();
             String liniaBufferIncidencia = lectorIncidencias.readLine();
             if (liniaBufferCliente == null && liniaBufferIncidencia == null)
                 break;
 
             else {
-                //FER QUE RETORNI UN OBJECTE INCIDENCIA
-                trocejarString(incidenciaTemporal, liniaBufferIncidencia,
+                Incidencia incidenciaTemporal = trocejarString(liniaBufferIncidencia,
                         liniaBufferCliente);
                 gestor.getLlistat().add(incidenciaTemporal);
             }
@@ -67,19 +66,18 @@ public class GestorFicheros {
         lectorIncidencias.close();
     }
 
+    // FER QUE RETORNI UN OBJECTE INCIDENCIA.
+    private static Incidencia trocejarString(String lineaIncidencia, String lineaCliente) {
 
-    //FER QUE RETORNI UN OBJECTE INCIDENCIA.
-    private static void trocejarString(Incidencia incidencia, String lineaIncidencia, String lineaCliente) {
+        String dadesIncidencia[] = lineaIncidencia.split(";");
+        String dadesClient[] = lineaCliente.split(";");
 
+        Incidencia incidencia = new Incidencia(Integer.parseInt(dadesIncidencia[0].trim()), dadesIncidencia[1].trim(),
+                new Usuario(Integer.parseInt(dadesClient[0].trim()),
+                        dadesClient[1].trim(),
+                        dadesClient[2].trim()));
 
-        //FER SPLIT PER LLEGIR
-        incidencia.setId(Integer.parseInt(lineaIncidencia.substring(0, 5).trim()));
-        incidencia.setDescripcion(lineaIncidencia.substring(6, 107).trim());
-        incidencia.setUser(
-                new Usuario(Integer.parseInt(lineaCliente.substring(0, 5).trim()),
-                        (lineaCliente.substring(6, 37)).trim(),
-                        lineaCliente.substring(37, 58)));
-
+                        return incidencia;
     }
 
     private static String integridadEspais(String frase, int longitud) {
