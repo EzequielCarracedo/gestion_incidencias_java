@@ -6,6 +6,16 @@ import app.gestor.GestorIncidencias;
 import app.util.GestorFicheros;
 import app.util.Utils;
 
+
+
+
+
+
+//PENDENTS 
+//Regla de maxim caracters en demanar string
+//validacion @ email regex
+
+
 class Main {
 
     private GestorIncidencias gestor;
