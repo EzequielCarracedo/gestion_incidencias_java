@@ -8,8 +8,8 @@ public class Incidencia {
 
     // BUILDER
 
-    public Incidencia (){
-        
+    public Incidencia() {
+
     }
 
     public Incidencia(int id, String descripcion, Usuario user) {
@@ -45,16 +45,17 @@ public class Incidencia {
     // SETTER
 
     public void setDescripcion(String descripcion) {
-        if (descripcion != null || !descripcion.isEmpty()) { // Validación
-            this.descripcion = descripcion;
+        this.descripcion = descripcion;
+        if (this.descripcion == null || this.descripcion.isBlank()) { // Validación
+            throw new IllegalArgumentException("La descripcion no puede estar vacia.");
         }
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setUser(Usuario user){
+    public void setUser(Usuario user) {
         this.user = user;
     }
 
@@ -63,25 +64,21 @@ public class Incidencia {
 
         if (estado.equals(EstatIncidencia.ABIERTA) && nuevoEstado.equals(EstatIncidencia.EN_PROCESO)) {
             this.estado = EstatIncidencia.EN_PROCESO;
-            System.out.println("EL ESTADO DE HA CAMBIADO A 'EN PROCESO'.");
+            System.out.println("EL ESTADO DE HA CAMBIADO A 'EN PROCESO'.\n");
             return true;
         } else if (estado.equals(EstatIncidencia.EN_PROCESO) && nuevoEstado.equals(EstatIncidencia.CERRADA)) {
             this.estado = EstatIncidencia.CERRADA;
-            System.out.println("EL ESTADO DE HA CAMBIADO A 'CERRADA'.");
+            System.out.println("EL ESTADO DE HA CAMBIADO A 'CERRADA'.\n");
             return true;
         } else {
-            System.out.println("NO SE PUEDE CAMBIAR A "+nuevoEstado+" DIRECTAMENTE.");
+            System.out.println("NO SE PUEDE CAMBIAR A " + nuevoEstado + " DIRECTAMENTE.\n");
             return false;
         }
     }
 
-    public String imprimirIncidencia(){
-        return "ID INCIDENCIA: "+ this.getId()+ "\nDESCRIPCION: "+this.descripcion +"\nID USUARIO: " +this.user.id() +"\nNOMBRE: " +this.user.nom() ;
+    public String imprimirIncidencia() {
+        return "ID INCIDENCIA: " + this.getId() + "\nDESCRIPCION: " + this.descripcion + "\nID USUARIO: "
+                + this.user.id() + "\nNOMBRE: " + this.user.nom();
     }
-
-
-
-
-   
 
 }

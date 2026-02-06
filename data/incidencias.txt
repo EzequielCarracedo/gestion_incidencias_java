@@ -1,7 +1,6 @@
 1000 ;PANTALLA                                                                                            ;ABIERTA        ;1000 ;Persona1                      ;
-1001 ;MOVIL                                                                                               ;ABIERTA        ;1001 ;PERSONA2                      ;
-1002 ;PC ROTA                                                                                             ;ABIERTA        ;1002 ;PERSONA3                      ;
-1003 ;ASFSD                                                                                               ;ABIERTA        ;1003 ;EZE                           ;
+1001 ;AS                                                                                                  ;ABIERTA        ;1001 ;PERSONA2                      ;
+1002 ;s                                                                                                   ;EN_PROCESO     ;1002 ;PERSONA3                      ;
 1004 ;SAD                                                                                                 ;ABIERTA        ;1004 ;SAFA                          ;
-1005 ;DSFSD                                                                                               ;ABIERTA        ;1005 ;SAFSA                         ;
-1006 ;A                                                                                                   ;ABIERTA        ;1006 ;S                             ;
+1005 ;modificada                                                                                          ;ABIERTA        ;1005 ;SAFSA                         ;
+1006 ;S                                                                                                   ;ABIERTA        ;1006 ;S                             ;

@@ -35,7 +35,7 @@ class Main {
         System.out.println("\n*FICHERO CARGADO CORRECTAMENTE* \n");
         do {
             mostrarMenu();
-            eleccio = utilitats.demanarEnter("", 0, 4);
+            eleccio = utilitats.demanarEnter("", 0, 5);
 
             if (eleccio != 0) {
                 app.gestionarEleccion(eleccio);
@@ -53,6 +53,7 @@ class Main {
                 2) - LISTAR INCIDENCIAS
                 3) - BUSCAR INDICENCIA POR ID
                 4) - MODIFICAR INCIDENCIA
+                5) - ELIMINAR INCIDENCIA
                 0) - SALIR
 
                     """);
@@ -83,11 +84,19 @@ class Main {
                 int index = gestor.buscarPorId(id);
                 if (index != Integer.MIN_VALUE) {
                     gestor.modificarIncidencia(index);
-                    System.out.println("INCIDENCIA MODIFICADA CORRECTAMENTE.");
                 }
-
-            }
                 break;
+            }
+            case 5: {
+                int eleccio = utilitats.demanarEnter("INGRESA EL ID DE LA INCIDENCIA QUE QUIERES BORRAR: ",
+                        Integer.MIN_VALUE, Integer.MAX_VALUE);
+                int index = gestor.buscarPorId(eleccio);
+                if (index != Integer.MIN_VALUE) {
+                    gestor.eliminarIncidencia(index);
+                    System.out.println("INCIDENCIA BORRADA CON EXITO");
+                }
+                break;
+            }
 
             default:
                 break;

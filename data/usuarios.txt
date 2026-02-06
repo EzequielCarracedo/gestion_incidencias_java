@@ -1,7 +1,6 @@
 1000 ;Persona1                      ;email1@gmail.com    ;
 1001 ;PERSONA2                      ;PERSONA2@GMAIL.COM  ;
 1002 ;PERSONA3                      ;PERSONA@GMAIL.COM   ;
-1003 ;EZE                           ;EZE                 ;
 1004 ;SAFA                          ;DSAD                ;
 1005 ;SAFSA                         ;DFDS                ;
 1006 ;S                             ;S                   ;

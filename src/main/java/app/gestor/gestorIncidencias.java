@@ -91,21 +91,37 @@ public class GestorIncidencias {
     }
 
     public void modificarIncidencia(int index) {
-
+        boolean cambiarDescripcion = false;
         System.out.println("¿QUIERES CAMBIAR LA DESCRIPCION? SI/NO");
-        boolean cambiarDescripcion = utilitats.demanarString("").toUpperCase().equals("SI") ? true : false;
+        while (true) {
+            String elec = utilitats.demanarString("").toUpperCase();
+            if (elec.equals("SI") || elec.equals("NO")) {
+                cambiarDescripcion = elec.toUpperCase().equals("SI") ? true : false;
+                break;
+            } else
+                System.out.println("OPCION NO VALIDA, VUELVE A INGRESAR LA RESPUESTA: ");
+        }
 
-        if (cambiarDescripcion) {
-            llistatIncidencies.get(index)
-                    .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción."));
-
+        while (true) {
+            try {
+                if (cambiarDescripcion) {
+                    llistatIncidencies.get(index)
+                            .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción."));
+                    System.out.println("descripcion modificada con exito!");
+                    break;
+                } else
+                    break;
+            } catch (IllegalArgumentException modificar) {
+                System.out.println("ERROR: " + modificar.getMessage());
+                System.out.println("Vuelve a introducir los datos: \n");
+            }
         }
 
         System.out.println("¿QUIERES CAMBIAR EL ESTADO? SI/NO");
 
         boolean cambiarEstado;
         while (true) {
-            String eleccio = utilitats.demanarString("");
+            String eleccio = utilitats.demanarString("").toUpperCase();
             if (eleccio.equals("SI") || eleccio.equals("NO")) {
                 cambiarEstado = eleccio.toUpperCase().equals("SI") ? true : false;
                 break;
@@ -114,24 +130,36 @@ public class GestorIncidencias {
         }
 
         if (cambiarEstado) {
-            System.out.println("""
-                    1-EN PROCESO
-                    2-CERRADA
-                    """);
-            int eleccioEstado = utilitats.demanarEnter("", 1, 2);
-            switch (eleccioEstado) {
-                case 1:
-                    llistatIncidencies.get(index).cambiarEstado(EstatIncidencia.EN_PROCESO);
-                    break;
-                case 2:
-                    llistatIncidencies.get(index).cambiarEstado(EstatIncidencia.CERRADA);
-                    break;
-                default:
-                    break;
+            boolean estatModificat = false;
+            while (!estatModificat) {
+
+                System.out.println("""
+                        1-EN PROCESO
+                        2-CERRADA
+                        """);
+
+                int eleccioEstado = utilitats.demanarEnter("", 1, 2);
+
+                switch (eleccioEstado) {
+                    case 1:
+                        estatModificat = llistatIncidencies.get(index).cambiarEstado(EstatIncidencia.EN_PROCESO);
+                        break;
+
+                    case 2:
+                        estatModificat = llistatIncidencies.get(index).cambiarEstado(EstatIncidencia.CERRADA);
+                        break;
+
+                    default:
+                        break;
+                }
             }
 
         }
 
+    }
+
+    public void eliminarIncidencia(int index) {
+        llistatIncidencies.remove(index);
     }
 
 }
