@@ -16,12 +16,15 @@ import app.modelo.Incidencia;
 public class Utils {
     Scanner scan = new Scanner(System.in);
 
-    //AÑADIR REGLA DE CANT CARACTERES
-    public String demanarString(String missatge) {
+    public String demanarString(String missatge, int maximCaracters) {
         System.out.println(missatge);
-        String dada = scan.nextLine();
-
-        return dada;
+        while (true) {
+            String dada = scan.nextLine();
+            if (dada.length() <= maximCaracters) {
+                return dada;
+            } else
+                System.out.println("Has introducido mas caracteres de los permitidos, vuelve a intentarlo:");
+        }
     }
 
     public int demanarEnter(String missatge, int min, int max) {
@@ -66,13 +69,13 @@ public class Utils {
             }
         }
 
-        return (max+1);
+        return (max + 1);
     }
 
     public int idIncrementUsuari(List<Incidencia> llistatIncidencies) {
         int max = 999;
-        
-        if (llistatIncidencies !=  null) {
+
+        if (llistatIncidencies != null) {
             for (int it = 0; it < llistatIncidencies.size(); it++) {
                 if (llistatIncidencies.get(it).getUser().id() > max) {
                     max = llistatIncidencies.get(it).getId();
@@ -80,9 +83,7 @@ public class Utils {
             }
         }
 
-        return (max+1);
+        return (max + 1);
     }
-
-    
 
 }

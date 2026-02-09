@@ -28,10 +28,10 @@ public class GestorIncidencias {
         while (true) {
             try {
                 Incidencia novaIncidencia = new Incidencia(utilitats.idIncrementIncidencia(llistatIncidencies),
-                        utilitats.demanarString("Describe la incidencia"),
+                        utilitats.demanarString("Describe la incidencia", 100),
                         usuarioTemporal);
                 llistatIncidencies.add(novaIncidencia);
-                System.out.println("INCIDENCIA CREADA CORRECTAMENTE.\n");
+                System.out.println("\nINCIDENCIA CREADA CORRECTAMENTE.\n");
                 break;
             } catch (IllegalArgumentException a) {
                 System.out.println("ERROR: " + a.getMessage());
@@ -45,8 +45,8 @@ public class GestorIncidencias {
     public Usuario crearUsuario() {
         while (true) {
             try {
-                String nom = utilitats.demanarString("Nombre:");
-                String email = utilitats.demanarString("Email:");
+                String nom = utilitats.demanarString("Nombre:",30);
+                String email = utilitats.demanarString("Email:",20);
 
                 return new Usuario(
                         utilitats.idIncrementUsuari(llistatIncidencies),
@@ -55,7 +55,7 @@ public class GestorIncidencias {
 
             } catch (IllegalArgumentException e) {
                 System.out.println("ERROR: " + e.getMessage());
-                System.out.println("Vuelve a introducir los datos: \n");
+                System.out.println("\nVuelve a introducir los datos: \n");
             }
         }
     }
@@ -72,7 +72,12 @@ public class GestorIncidencias {
 
             }
         } else
-            System.out.println("NO HAY INCIDENCIAS.");
+            System.out.println("\nNO HAY INCIDENCIAS.\n");
+    }
+
+
+    public void listarPorEstado(){
+        
     }
 
     public int buscarPorId(int id) {
@@ -93,20 +98,12 @@ public class GestorIncidencias {
     public void modificarIncidencia(int index) {
         boolean cambiarDescripcion = false;
         System.out.println("¿QUIERES CAMBIAR LA DESCRIPCION? SI/NO");
-        while (true) {
-            String elec = utilitats.demanarString("").toUpperCase();
-            if (elec.equals("SI") || elec.equals("NO")) {
-                cambiarDescripcion = elec.toUpperCase().equals("SI") ? true : false;
-                break;
-            } else
-                System.out.println("OPCION NO VALIDA, VUELVE A INGRESAR LA RESPUESTA: ");
-        }
-
+        cambiarDescripcion = comprovarSiNo();
         while (true) {
             try {
                 if (cambiarDescripcion) {
                     llistatIncidencies.get(index)
-                            .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción."));
+                            .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción.",100));
                     System.out.println("descripcion modificada con exito!");
                     break;
                 } else
@@ -120,24 +117,14 @@ public class GestorIncidencias {
         System.out.println("¿QUIERES CAMBIAR EL ESTADO? SI/NO");
 
         boolean cambiarEstado;
-        while (true) {
-            String eleccio = utilitats.demanarString("").toUpperCase();
-            if (eleccio.equals("SI") || eleccio.equals("NO")) {
-                cambiarEstado = eleccio.toUpperCase().equals("SI") ? true : false;
-                break;
-            } else
-                System.out.println("OPCION NO VALIDA, VUELVE A INGRESAR LA RESPUESTA: ");
-        }
-
+        cambiarEstado = comprovarSiNo();
         if (cambiarEstado) {
             boolean estatModificat = false;
             while (!estatModificat) {
-
                 System.out.println("""
                         1-EN PROCESO
                         2-CERRADA
                         """);
-
                 int eleccioEstado = utilitats.demanarEnter("", 1, 2);
 
                 switch (eleccioEstado) {
@@ -148,18 +135,24 @@ public class GestorIncidencias {
                     case 2:
                         estatModificat = llistatIncidencies.get(index).cambiarEstado(EstatIncidencia.CERRADA);
                         break;
-
-                    default:
-                        break;
                 }
             }
-
         }
-
     }
 
     public void eliminarIncidencia(int index) {
         llistatIncidencies.remove(index);
+    }
+
+    public boolean comprovarSiNo() {
+
+        while (true) {
+            String eleccio = utilitats.demanarString("",2).toUpperCase();
+            if (eleccio.equals("SI") || eleccio.equals("NO")) {
+                return eleccio.toUpperCase().equals("SI") ? true : false;
+            } else
+                System.out.println("OPCION NO VALIDA, VUELVE A INGRESAR LA RESPUESTA: ");
+        }
     }
 
 }
