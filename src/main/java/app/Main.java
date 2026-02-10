@@ -6,15 +6,9 @@ import app.gestor.GestorIncidencias;
 import app.util.GestorFicheros;
 import app.util.Utils;
 
-
-
-
-
-
 //PENDENTS 
 //Regla de maxim caracters en demanar string
 //validacion @ email regex
-
 
 class Main {
 
@@ -45,7 +39,7 @@ class Main {
         System.out.println("\n*FICHERO CARGADO CORRECTAMENTE* \n");
         do {
             mostrarMenu();
-            eleccio = utilitats.demanarEnter("", 0, 5);
+            eleccio = utilitats.demanarEnter("", 0, 6);
 
             if (eleccio != 0) {
                 app.gestionarEleccion(eleccio);
@@ -64,6 +58,7 @@ class Main {
                 3) - BUSCAR INDICENCIA POR ID
                 4) - MODIFICAR INCIDENCIA
                 5) - ELIMINAR INCIDENCIA
+                6) - LISTAR POR ESTADO
                 0) - SALIR
 
                     """);
@@ -106,6 +101,19 @@ class Main {
                     System.out.println("INCIDENCIA BORRADA CON EXITO");
                 }
                 break;
+            }
+
+            case 6: {
+                int eleccio = utilitats.demanarEnter("""
+                        1- ABIERTA
+                        2- EN PROCESO
+                        3- CERRADA
+                        """, 1, 3);
+
+                boolean trobat = gestor.listarPorEstado(eleccio);
+                if (!trobat) {
+                    System.out.println("NO HAY INCIDENCIAS CON EL ESTADO SOLICITADO.");
+                }
             }
 
             default:

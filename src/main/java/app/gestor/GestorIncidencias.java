@@ -45,8 +45,8 @@ public class GestorIncidencias {
     public Usuario crearUsuario() {
         while (true) {
             try {
-                String nom = utilitats.demanarString("Nombre:",30);
-                String email = utilitats.demanarString("Email:",20);
+                String nom = utilitats.demanarString("Nombre:", 30);
+                String email = utilitats.demanarString("Email:", 20);
 
                 return new Usuario(
                         utilitats.idIncrementUsuari(llistatIncidencies),
@@ -75,9 +75,30 @@ public class GestorIncidencias {
             System.out.println("\nNO HAY INCIDENCIAS.\n");
     }
 
+    public boolean listarPorEstado(int estado) {
+        String estat = "";
+        boolean trobat = false;
+        switch (estado) {
+            case 1:
+                estat = "ABIERTA";
 
-    public void listarPorEstado(){
-        
+                break;
+
+            case 2:
+                estat = "EN_PROCESO";
+                break;
+
+            default: estat =  "CERRADA";
+                break;
+        }
+
+        for (int it = 0; it < llistatIncidencies.size(); it++) {
+            if (llistatIncidencies.get(it).getEstado().toString().equals(estat)) {
+                System.out.println(llistatIncidencies.get(it).imprimirIncidencia()+"\n");
+                trobat = true;
+            }
+        }
+        return trobat;
     }
 
     public int buscarPorId(int id) {
@@ -103,7 +124,7 @@ public class GestorIncidencias {
             try {
                 if (cambiarDescripcion) {
                     llistatIncidencies.get(index)
-                            .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción.",100));
+                            .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción.", 100));
                     System.out.println("descripcion modificada con exito!");
                     break;
                 } else
@@ -147,7 +168,7 @@ public class GestorIncidencias {
     public boolean comprovarSiNo() {
 
         while (true) {
-            String eleccio = utilitats.demanarString("",2).toUpperCase();
+            String eleccio = utilitats.demanarString("", 2).toUpperCase();
             if (eleccio.equals("SI") || eleccio.equals("NO")) {
                 return eleccio.toUpperCase().equals("SI") ? true : false;
             } else
