@@ -121,7 +121,7 @@ public class GestorIncidencias {
         System.out.println("¿QUIERES CAMBIAR LA DESCRIPCION? SI/NO");
         cambiarDescripcion = comprovarSiNo();
         boolean esCorrecte = false;
-        while (esCorrecte) {
+        while (!esCorrecte) {
             try {
                 if (cambiarDescripcion) {
                     llistatIncidencies.get(index)
