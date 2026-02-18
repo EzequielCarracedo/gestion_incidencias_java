@@ -120,12 +120,14 @@ public class GestorIncidencias {
         boolean cambiarDescripcion = false;
         System.out.println("¿QUIERES CAMBIAR LA DESCRIPCION? SI/NO");
         cambiarDescripcion = comprovarSiNo();
-        while (true) {
+        boolean esCorrecte = false;
+        while (esCorrecte) {
             try {
                 if (cambiarDescripcion) {
                     llistatIncidencies.get(index)
                             .setDescripcion(utilitats.demanarString("Ingresa la nueva descripción.", 100));
                     System.out.println("descripcion modificada con exito!");
+                    esCorrecte = true;
                     break;
                 } else
                     break;
@@ -136,7 +138,7 @@ public class GestorIncidencias {
         }
 
         System.out.println("¿QUIERES CAMBIAR EL ESTADO? SI/NO");
-
+       
         boolean cambiarEstado;
         cambiarEstado = comprovarSiNo();
         if (cambiarEstado) {
@@ -166,14 +168,16 @@ public class GestorIncidencias {
     }
 
     public boolean comprovarSiNo() {
-
-        while (true) {
+        boolean esCorrecte = false;
+        while (!esCorrecte) {
             String eleccio = utilitats.demanarString("", 2).toUpperCase();
             if (eleccio.equals("SI") || eleccio.equals("NO")) {
+                esCorrecte=true;
                 return eleccio.toUpperCase().equals("SI") ? true : false;
             } else
                 System.out.println("OPCION NO VALIDA, VUELVE A INGRESAR LA RESPUESTA: ");
         }
+        return esCorrecte;
     }
 
 }

@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import app.gestor.GestorIncidencias;
 import app.modelo.Incidencia;
@@ -16,6 +15,15 @@ public class GestorFicheros {
 
     public static void grabarIncidencias(GestorIncidencias gestor, File ficheroIncidencias, File ficheroClientes)
             throws IOException {
+
+        if (gestor == null || ficheroIncidencias == null || ficheroClientes == null) {
+            throw new IllegalArgumentException("Ninguno de los parámetros puede ser nulo.");
+        }
+
+        if (gestor.getLlistat().isEmpty()) {
+            throw new RuntimeException("No hay incidencias para grabar en los ficheros.");
+        }
+
         BufferedWriter escriptorClientes = Utils.obrirEscriptors(ficheroClientes);
         BufferedWriter escriptor = Utils.obrirEscriptors(ficheroIncidencias);
 
@@ -44,6 +52,10 @@ public class GestorFicheros {
     public static void cargarFichero(GestorIncidencias gestor, File ficheroIncidencias,
             File ficheroClientes) throws IOException {
 
+        if (gestor == null || ficheroIncidencias == null || ficheroClientes == null) {
+            throw new IllegalArgumentException("Ninguno de los parámetros puede ser nulo.");
+        }
+
         BufferedReader lectorClientes = Utils.obrirLectors(ficheroClientes);
         BufferedReader lectorIncidencias = Utils.obrirLectors(ficheroIncidencias);
 
@@ -66,7 +78,7 @@ public class GestorFicheros {
         lectorIncidencias.close();
     }
 
-    // FER QUE RETORNI UN OBJECTE INCIDENCIA.
+
     private static Incidencia trocejarString(String lineaIncidencia, String lineaCliente) {
 
         String dadesIncidencia[] = lineaIncidencia.split(";");
@@ -77,7 +89,7 @@ public class GestorFicheros {
                         dadesClient[1].trim(),
                         dadesClient[2].trim()));
 
-                        return incidencia;
+        return incidencia;
     }
 
     private static String integridadEspais(String frase, int longitud) {
