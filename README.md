@@ -6,6 +6,8 @@ simulando un entorno de soporte técnico.
 ## Funcionalidades
 - Alta y listado de usuarios
 - Creación y gestión de incidencias
+- Validación
+- Gestion de excepciones
 - Cambio de estado de incidencias
 - Menú interactivo por consola
 
